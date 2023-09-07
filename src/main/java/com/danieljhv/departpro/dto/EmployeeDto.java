@@ -6,6 +6,8 @@ public class EmployeeDto {
     private String lastName;
     private String email;
 
+    public EmployeeDto() { }
+
     public EmployeeDto(Long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
