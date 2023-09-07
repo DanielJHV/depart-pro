@@ -1,7 +1,7 @@
-package com.departpro.departpro.mapper;
+package com.danieljhv.departpro.mapper;
 
-import com.departpro.departpro.dto.EmployeeDto;
-import com.departpro.departpro.entity.Employee;
+import com.danieljhv.departpro.dto.EmployeeDto;
+import com.danieljhv.departpro.entity.Employee;
 
 public class EmployeeMapper {
     public static EmployeeDto mapToEmployeeDto(Employee employee) {

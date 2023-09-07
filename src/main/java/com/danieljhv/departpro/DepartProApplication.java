@@ -1,4 +1,4 @@
-package com.departpro.departpro;
+package com.danieljhv.departpro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

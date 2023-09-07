@@ -1,4 +1,4 @@
-package com.departpro.departpro;
+package com.danieljhv.departpro;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

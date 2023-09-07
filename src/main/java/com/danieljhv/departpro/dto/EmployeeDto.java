@@ -1,4 +1,4 @@
-package com.departpro.departpro.dto;
+package com.danieljhv.departpro.dto;
 
 public class EmployeeDto {
     private Long id;

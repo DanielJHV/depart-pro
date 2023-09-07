@@ -1,4 +1,4 @@
-package com.departpro.departpro.entity;
+package com.danieljhv.departpro.entity;
 
 import jakarta.persistence.*;
 
