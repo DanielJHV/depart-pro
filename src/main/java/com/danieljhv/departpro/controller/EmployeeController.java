@@ -1,6 +1,7 @@
 package com.danieljhv.departpro.controller;
 
 import com.danieljhv.departpro.dto.EmployeeDto;
+import com.danieljhv.departpro.entity.Employee;
 import com.danieljhv.departpro.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,4 +36,10 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId,
+                                                      @RequestBody EmployeeDto updatedEmployee) {
+        EmployeeDto employeeDto = employeeService.updateEmployee(employeeId, updatedEmployee);
+        return ResponseEntity.ok(employeeDto);
+    }
 }
