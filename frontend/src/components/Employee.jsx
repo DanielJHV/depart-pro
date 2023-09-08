@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { createEmployee } from "../services/EmployeeService";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  createEmployee,
+  getEmployee,
+  updateEmployee,
+} from "../services/EmployeeService";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Employee() {
   const [firstName, setFirstName] = useState("");
@@ -14,6 +18,21 @@ function Employee() {
   });
 
   const navigator = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getEmployee(id)
+        .then((response) => {
+          setFirstName(response.data.firstName);
+          setLastName(response.data.lastName);
+          setEmail(response.data.email);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [id]);
 
   function saveEmployee(e) {
     e.preventDefault();
@@ -21,10 +40,25 @@ function Employee() {
     if (validateForm()) {
       const employee = { firstName, lastName, email };
 
-      createEmployee(employee).then((response) => {
-        console.log(response.data);
-        navigator("/employees");
-      });
+      if (id) {
+        updateEmployee(id, employee)
+          .then((response) => {
+            console.log(response.data);
+            navigator("/employees");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        createEmployee(employee)
+          .then((response) => {
+            console.log(response.data);
+            navigator("/employees");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     }
   }
 
@@ -58,9 +92,17 @@ function Employee() {
     return valid;
   }
 
+  function pageTitle() {
+    if (id) {
+      return <h2 className="heading-secondary">Edit employee</h2>;
+    } else {
+      return <h2 className="heading-secondary">Add employee</h2>;
+    }
+  }
+
   return (
     <form className="employee-form">
-      <h2 className="heading-secondary">Add employee</h2>
+      {pageTitle()}
       <div className="employee-section">
         <label>First name</label>
         <input

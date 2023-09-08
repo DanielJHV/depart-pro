@@ -22,11 +22,15 @@ function EmployeesList() {
     navigator("/add-employee");
   }
 
+  function updateEmployee(id) {
+    navigator(`/edit-employee/${id}`);
+  }
+
   return (
     <div className="employees-list">
       <h2 className="heading-secondary">Employees list</h2>
       <div class="add-container">
-        <button class="add-btn" onClick={addEmployee}>
+        <button class="btn-add" onClick={addEmployee}>
           Add employee
         </button>
       </div>
@@ -36,6 +40,7 @@ function EmployeesList() {
           <th>First name</th>
           <th>Last name</th>
           <th>Email</th>
+          <th>Manage</th>
         </thead>
         <tbody>
           {employees.map((employee) => (
@@ -45,6 +50,14 @@ function EmployeesList() {
               <td>{employee.lastName}</td>
               <td>
                 <a href={`mailto: ${employee.email}`}>{employee.email}</a>
+              </td>
+              <td>
+                <button
+                  className="btn-edit"
+                  onClick={() => updateEmployee(employee.id)}
+                >
+                  Edit
+                </button>
               </td>
             </tr>
           ))}
