@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   gap: 2rem;
+  margin: 0;
   list-style-type: none;
 }
 
@@ -54,6 +55,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #d9d9d9;
+  margin: 0;
 }
 
 .header p span {
@@ -135,6 +137,10 @@ td {
   padding: 2rem;
 }
 
+.employee-form .heading-secondary {
+  margin: 0;
+}
+
 .employee-form label {
   font-size: 1.4rem;
   font-weight: 600;
@@ -164,4 +170,9 @@ td {
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+.invalid-input {
+  color: #c00707;
+  font-size: 1.2rem;
 }

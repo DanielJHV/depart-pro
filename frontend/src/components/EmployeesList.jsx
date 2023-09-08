@@ -30,7 +30,7 @@ function EmployeesList() {
           Add employee
         </button>
       </div>
-      <table className="employees-table">
+      <table className="employees-table thead-light">
         <thead>
           <th>ID</th>
           <th>First name</th>
