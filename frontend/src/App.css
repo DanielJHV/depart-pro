@@ -67,9 +67,31 @@
 .heading-secondary {
   margin: 4.2rem 0 3.2rem 0;
   text-align: center;
+  color: #303030;
   font-size: 2.8rem;
   font-weight: 700;
   letter-spacing: -1.5px;
+}
+
+.add-container {
+  display: flex;
+  width: 100rem;
+  margin: auto;
+  margin-bottom: 1.8rem;
+}
+
+.add-btn {
+  color: #d9d9d9;
+  background-color: #303030;
+  margin-left: auto;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 500px;
+}
+
+.add-btn:hover {
+  background-color: #505050;
 }
 
 .employees-table {
@@ -99,4 +121,47 @@ td {
   text-align: center;
   padding: 2rem 0;
   font-size: 1.6rem;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: auto;
+  margin-top: 5rem;
+  width: 50rem;
+  border: 2px solid #303030;
+  border-radius: 5px;
+  padding: 2rem;
+}
+
+.employee-form label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.employee-form input {
+  padding: 0.4rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  border: 1px solid #303030;
+}
+
+.employee-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.btn-save {
+  padding: 0.6rem;
+  color: #eee;
+  background-color: #303030;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
