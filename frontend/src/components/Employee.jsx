@@ -35,10 +35,9 @@ function Employee() {
   }, [id]);
 
   function saveEmployee(e) {
-    e.preventDefault();
-
     if (validateForm()) {
       const employee = { firstName, lastName, email };
+      e.preventDefault();
 
       if (id) {
         updateEmployee(id, employee)

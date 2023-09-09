@@ -1,53 +1,66 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  createDepartment,
+  getDepartmentById,
+  updateDepartment,
+} from "../services/DepartmentService";
 
 function Department() {
   const [departmentName, setDepartmentName] = useState("");
   const [description, setDescription] = useState("");
 
   const navigator = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    getDepartmentById(id)
+      .then((response) => {
+        setDepartmentName(response.data.departmentName);
+        setDescription(response.data.description);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]);
 
   function saveDepartment(e) {
     e.preventDefault();
 
     const department = { departmentName, description };
-    console.log(department);
-    navigator("/departments");
+
+    if (id) {
+      updateDepartment(id, department)
+        .then((response) => {
+          console.log(response.data);
+          navigator("/departments");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      createDepartment(department)
+        .then((response) => {
+          navigator("/departments");
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }
 
-  //   function validateForm() {
-  //     let valid = true;
-
-  //     const errorsCopy = { ...errors };
-
-  //     if (firstName.trim()) {
-  //       errorsCopy.firstName = "";
-  //     } else {
-  //       errorsCopy.firstName = "First name is required";
-  //       valid = false;
-  //     }
-
-  //     if (lastName.trim()) {
-  //       errorsCopy.lastName = "";
-  //     } else {
-  //       errorsCopy.lastName = "Last name is required";
-  //       valid = false;
-  //     }
-
-  //     if (email.trim()) {
-  //       errorsCopy.email = "";
-  //     } else {
-  //       errorsCopy.email = "Email is required";
-  //       valid = false;
-  //     }
-
-  //     setErrors(errorsCopy);
-  //     return valid;
-  //   }
+  function pageTitle() {
+    if (id) {
+      return <h2 className="heading-secondary">Edit department</h2>;
+    } else {
+      return <h2 className="heading-secondary">Add department</h2>;
+    }
+  }
 
   return (
     <form className="form">
-      {/* {pageTitle()} */}
+      {pageTitle()}
       <div className="form-section">
         <label>Department name</label>
         <input

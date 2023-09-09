@@ -25,6 +25,10 @@ function DepartmentsList() {
     navigator("/add-department");
   }
 
+  function updateDepartment(id) {
+    navigator(`/edit-department/${id}`);
+  }
+
   return (
     <div className="departments-list">
       <h2 className="heading-secondary">Departments list</h2>
@@ -55,7 +59,7 @@ function DepartmentsList() {
                 </button>
                 <button
                   className="btn-manage btn-edit"
-                  //   onClick={() => updateDepartment(department.id)}
+                  onClick={() => updateDepartment(department.id)}
                 >
                   Edit
                 </button>
