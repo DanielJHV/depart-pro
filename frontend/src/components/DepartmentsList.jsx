@@ -1,25 +1,37 @@
 import { useEffect, useState } from "react";
-import { getAllDepartments } from "../services/DepartmentService";
+import { departmentsList } from "../services/DepartmentService";
+import { useNavigate } from "react-router-dom";
 
 function DepartmentsList() {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    getAllDepartments()
+    getAllDepartments();
+  }, []);
+
+  const navigator = useNavigate();
+
+  function getAllDepartments() {
+    departmentsList()
       .then((response) => {
-        console.log(response.data);
         setDepartments(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }
+
+  function addDepartment() {
+    navigator("/add-department");
+  }
 
   return (
     <div className="departments-list">
       <h2 className="heading-secondary">Departments list</h2>
-      <div class="add-container">
-        <button class="btn-add">Add department</button>
+      <div className="add-container">
+        <button className="btn-add" onClick={addDepartment}>
+          Add department
+        </button>
       </div>
       <table className="table">
         <thead>
@@ -43,7 +55,7 @@ function DepartmentsList() {
                 </button>
                 <button
                   className="btn-manage btn-edit"
-                  //   onClick={() => updateEmployee(department.id)}
+                  //   onClick={() => updateDepartment(department.id)}
                 >
                   Edit
                 </button>

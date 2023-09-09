@@ -101,9 +101,9 @@ function Employee() {
   }
 
   return (
-    <form className="employee-form">
+    <form className="form">
       {pageTitle()}
-      <div className="employee-section">
+      <div className="form-section">
         <label>First name</label>
         <input
           type="text"
@@ -117,7 +117,7 @@ function Employee() {
         )}
       </div>
 
-      <div className="employee-section">
+      <div className="form-section">
         <label>Last name</label>
 
         <input
@@ -132,7 +132,7 @@ function Employee() {
         )}
       </div>
 
-      <div className="employee-section">
+      <div className="form-section">
         <label>Email</label>
         <input
           type="email"

@@ -99,16 +99,16 @@
   background-color: #505050;
 }
 
-.employees-table {
+.table {
   margin: auto;
   width: 100rem;
 }
 
-.employees-table a {
+.table a {
   color: #555;
 }
 
-table,
+.table,
 th,
 td {
   border: 1px solid #000;
@@ -117,7 +117,7 @@ td {
 
 th {
   font-size: 1.6rem;
-  padding: 2rem 0;
+  padding: 2rem;
   background-color: #303030;
   color: #eee;
 }
@@ -147,9 +147,9 @@ td {
   background-color: #38b6ff;
 }
 
-/* Employee form  */
+/* Form  */
 
-.employee-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -161,17 +161,17 @@ td {
   padding: 2rem;
 }
 
-.employee-form .heading-secondary {
+.form .heading-secondary {
   margin: 0;
 }
 
-.employee-form label {
+.form label {
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: -1px;
 }
 
-.employee-form input {
+.form input {
   padding: 0.4rem;
   font-size: 1.4rem;
   color: #000;
@@ -181,7 +181,7 @@ td {
   border: 1px solid #303030;
 }
 
-.employee-section {
+.form-section {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
