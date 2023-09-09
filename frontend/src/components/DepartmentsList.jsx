@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import { departmentsList } from "../services/DepartmentService";
+import { getAllDepartments } from "../services/DepartmentService";
 import { useNavigate } from "react-router-dom";
+import { deleteDepartment } from "../services/DepartmentService";
 
 function DepartmentsList() {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    getAllDepartments();
+    listOfDepartments();
   }, []);
 
   const navigator = useNavigate();
 
-  function getAllDepartments() {
-    departmentsList()
+  function listOfDepartments() {
+    getAllDepartments()
       .then((response) => {
         setDepartments(response.data);
       })
@@ -27,6 +28,17 @@ function DepartmentsList() {
 
   function updateDepartment(id) {
     navigator(`/edit-department/${id}`);
+  }
+
+  function removeDepartment(id) {
+    deleteDepartment(id)
+      .then((response) => {
+        console.log(response.data);
+        listOfDepartments();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
@@ -53,7 +65,7 @@ function DepartmentsList() {
               <td>
                 <button
                   className="btn-manage btn-delete"
-                  //   onClick={() => deleteDepartment(department.id)}
+                  onClick={() => removeDepartment(department.id)}
                 >
                   Delete
                 </button>
