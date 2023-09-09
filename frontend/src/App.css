@@ -200,3 +200,8 @@ td {
   color: #c00707;
   font-size: 1.2rem;
 }
+
+.select {
+  font-size: 1.4rem;
+  padding: 0.4rem;
+}

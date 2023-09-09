@@ -1,5 +1,6 @@
 package com.danieljhv.departpro.entity;
 
+import com.danieljhv.departpro.dto.DepartmentDto;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,13 +19,18 @@ public class Employee {
     @Column(name = "email_id", nullable = false, unique = true)
     private String email;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
     public Employee() {}
 
-    public Employee(Long id, String firstName, String lastName, String email) {
+    public Employee(Long id, String firstName, String lastName, String email, Department department) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.department = department;
     }
 
     public Long getId() {
@@ -57,5 +63,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

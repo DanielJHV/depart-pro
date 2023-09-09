@@ -5,16 +5,30 @@ import {
   updateEmployee,
 } from "../services/EmployeeService";
 import { useNavigate, useParams } from "react-router-dom";
+import { getAllDepartments } from "../services/DepartmentService";
 
 function Employee() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [departmentId, setDepartmentId] = useState("");
+  const [departments, setDepartments] = useState([]);
+
+  useEffect(() => {
+    getAllDepartments()
+      .then((response) => {
+        setDepartments(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    department: "",
   });
 
   const navigator = useNavigate();
@@ -27,6 +41,7 @@ function Employee() {
           setFirstName(response.data.firstName);
           setLastName(response.data.lastName);
           setEmail(response.data.email);
+          setDepartmentId(response.data.departmentId);
         })
         .catch((error) => {
           console.error(error);
@@ -35,9 +50,9 @@ function Employee() {
   }, [id]);
 
   function saveEmployee(e) {
+    e.preventDefault();
     if (validateForm()) {
-      const employee = { firstName, lastName, email };
-      e.preventDefault();
+      const employee = { firstName, lastName, email, departmentId };
 
       if (id) {
         updateEmployee(id, employee)
@@ -84,6 +99,13 @@ function Employee() {
       errorsCopy.email = "";
     } else {
       errorsCopy.email = "Email is required";
+      valid = false;
+    }
+
+    if (departmentId) {
+      errorsCopy.department = "";
+    } else {
+      errorsCopy.department = "Department is required";
       valid = false;
     }
 
@@ -141,6 +163,27 @@ function Employee() {
           autoComplete="off"
         ></input>
         {errors.email && <div className="invalid-input">{errors.email}</div>}
+      </div>
+
+      <div className="form-section">
+        <label>Select department</label>
+        <select
+          className="select"
+          value={departmentId}
+          onChange={(e) => setDepartmentId(e.target.value)}
+        >
+          <option value="Select Department">Select department</option>
+          {departments.map((department) => {
+            return (
+              <option key={department.id} value={department.id}>
+                {department.departmentName}
+              </option>
+            );
+          })}
+        </select>
+        {errors.department && (
+          <div className="invalid-input">{errors.department}</div>
+        )}
       </div>
       <button className="btn-save" onClick={saveEmployee}>
         Save
