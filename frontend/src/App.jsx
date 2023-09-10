@@ -5,6 +5,7 @@ import Employee from "./components/Employee";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DepartmentsList from "./components/DepartmentsList";
 import Department from "./components/Department";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<EmployeesList />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/employees" element={<EmployeesList />}></Route>
           <Route path="/add-employee" element={<Employee />}></Route>
           <Route path="/edit-employee/:id" element={<Employee />}></Route>
