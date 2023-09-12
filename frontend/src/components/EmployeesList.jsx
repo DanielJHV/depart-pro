@@ -44,7 +44,7 @@ function EmployeesList() {
     <div className="employees-list">
       <h2 className="heading-secondary">Employees list</h2>
       <div class="add-container">
-        <button class="btn-add" onClick={addEmployee}>
+        <button className="btn-add" onClick={addEmployee}>
           Add employee
         </button>
       </div>
